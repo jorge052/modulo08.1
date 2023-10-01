@@ -163,3 +163,43 @@ const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
 };
 
 console.log("El pediatra se fue a casa", HayPacientesDePediatria(pacientes));
+
+// Queremos calcular el número total de pacientes que están asignados a la especialidad de Medico de familia, y lo que están asignados a Pediatría y a cardiología
+
+interface NumeroPacientesPorEspecialidad {
+  medicoDeFamilia: number;
+  pediatria: number;
+  cardiologia: number;
+}
+
+const cuentaPacientesPorEspecialidad = (
+  pacientes: Pacientes[]
+): NumeroPacientesPorEspecialidad => {
+  let medicoDeFamiliaNumero = 0;
+  let pediatraNumero = 0;
+  let cardiologiaNumero = 0;
+
+  for (let i = 0; i < pacientes.length; i++) {
+    switch (pacientes[i].especialidad) {
+      case "Medico de familia":
+        medicoDeFamiliaNumero++;
+        break;
+      case "Pediatra":
+        pediatraNumero++;
+        break;
+      case "Cardiólogo":
+        cardiologiaNumero++;
+        break;
+    }
+  }
+
+  const conteoEspecialidad: NumeroPacientesPorEspecialidad = {
+    medicoDeFamilia: medicoDeFamiliaNumero,
+    pediatria: pediatraNumero,
+    cardiologia: cardiologiaNumero,
+  };
+
+  return conteoEspecialidad;
+};
+
+console.log(cuentaPacientesPorEspecialidad(pacientes));
